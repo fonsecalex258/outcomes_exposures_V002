@@ -1,0 +1,161 @@
+---
+title: Human health effects due to proximity to concentrated animal-feeding operations
+  (CAFO)
+  
+bibliography: referencescafo.bib 
+csl: elsevier-vancouver.csl
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Project Summary : Outcomes and exposures evaulated in the published literture from 2014 to 2020
+Livestock farming has experienced a significant transformation in the last decades, moving from small, family-owned farms to large farms. To classify those large animal operations, two terms are used: animal feeding operations (AFO) and concentrated animal feeding operations (CAFO). The U.S. Environmental Protection Agency (EPA) defines an AFO as a agricultural enterprise where animals are kept and raised in confined situations. AFOs congregate animals, feed, manure and urine, dead animals, and production operations on a small land area. Likewise, for the EPA, CAFO is a term used for a large concentrated AFO. More precisely, a CAFO is an AFO with more than 1000 animal units confined on site for more than 45 days during the year. The growth and popularity of this type of operations has been accompanied by the concerns due to the potential harmful effects that animal facilities could have on nearby communities. Regarding the swine industry, it has been suggested that facilities that confine animals indoors for feeding might represent a health hazard for surrounding communities because of exposure to odors, emissions and other infectious agents. To understand and estimate the impacts of CAFO on the health of nearby communities, several studies have been carried out in the last years.
+
+# Purpose of the Project
+In March 2020, the National Pork Board asked our group to provide a summary of the outcome and exposures reported in studies published on the topic of CAFOS and community health since 2014.  Our group has performed two systematic reviews that summarize and assess the findings of previous publications approaching the association between animal-feeding operations and the measures of the health of individuals living near animal-feeding operations. In the 2014 review, we reported that 16 publications were relevant to the topic. For this project, we evaluated potentially relevant papers published since 2014.
+
+# Brief Summary
+We identified 21 additional papers published since 2014.  2017 was the year in which more studies were published (Figure 1). This growth in relevant papers highlights how much interest in the topic is growing. These "new" studies have been performed mainly in Netherlands, USA, Germany, and Canada and have explored multiple health outcomes (Figure 2). For each study, the reported health outcome measures as well as the measure used to assess exposure to animal feed operations were extracted and grouped into broad outcome and exposure categories respectively. For example if a studie reported asthma as a health outcome, this outcome was categorized into the broader category of lower respiratory diseases.These broad outcomes categories were created based on based on the affected body system such as digestive, cardiovascular, etc (Table 2). Likewise, if for example the exposure used into the study was distance measured in kilometers to the nearest animal operation, then this exposure was grouped into a  broader exposure category called distance (Table 3).We defined a combination as the pair of a broad outcome category and an exposure, for example, lower respiratory disease (broad outcome category) and distance to the nearest CAFO operation (exposure). In Table 1,  the number of combinations in which the broad outcome category was used according to the year. For instance, we can see that for lower respiratory outcomes were the most used and discussed over the last 6 years (Table 1).The studies provided 1636 combinations of exposures and outcomes. For the period between 2014 and 2016 the number of outcomes categories analyzed ranged from 4 to 6. For the period between 2017 and 2019 the number of categories almost doubled (Figure 3).   
+
+```{r echo = FALSE, message=FALSE}
+
+library(readxl)
+
+
+cafos2014_2020 <- read_excel("cafos2014_2020.xlsx")
+
+final_papers <- read_excel("final_papers.xlsx")
+
+updated1 <- data.frame(cafos2014_2020)
+countr <- data.frame(final_papers)
+```
+```{r echo = FALSE, message=FALSE, warning=FALSE}
+
+library(dplyr)
+library(ggplot2)
+
+#frequency grouped by outcomes and year ###Table 1
+experiment <- updated1 %>% group_by(`Year`,Broad.category.Body.system)%>%summarise(Frequency =length(Broad.category.Body.system))
+
+
+colnames(experiment)[2] <- "Broad Category"
+
+#frequency of outcomes by year
+experiment1 <-experiment %>% group_by(`Year`)%>%summarise(Frecuency =length(Year))
+
+#table # studies by country
+countries <- countr %>% group_by(`Country`)%>%summarise(Frecuency =length(`Country`))
+#table # studies by year
+years <- countr %>% group_by(`Year`)%>%summarise(Frecuency =length(`Year`))
+
+#Figure 1
+# years %>% ggplot(aes(x=Year,y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+ xlab("Year")+ylab("Number of published studies")+labs(caption=" Figure 1")
+years %>%
+ggplot(aes(x=as.factor(Year), y=Frecuency, group=1))+geom_line()+geom_point(shape=21, color="black", fill="#69b3a2", size=6)+ylim(0,8)+ xlab("Year of data collection")+ylab("Number of published studies")+labs(caption=" Figure 1")
+
+countries %>% ggplot(aes(x=reorder(`Country`,Frecuency),y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+ xlab("Country")+ylab("Number of studies")+labs(caption=" Figure 2")
+
+#figure 3
+
+# experiment1%>% ggplot(aes(x=Year, y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+ xlab("Year")+ylab("Number of categories")+labs(caption=" Figure 3")
+
+experiment1%>% ggplot(aes(x=as.factor(Year), y=Frecuency, group=1))+geom_line()+geom_point(shape=21, color="black", fill="#69b3a2", size=6)+ylim(0,15)+ xlab("Year")+ylab("Number of broad categories analyzed")+labs(caption=" Figure 3")
+
+
+
+```
+
+
+From 2014 to 2019, the health outcomes most commonly described are grouped within the broad group of lower respiratory conditions and include symptoms and diseases such as: asthma, chronic obstructive pulmonary disease (COPD), difficulty breathing, wheezing, emphysema, pneumonia, bronchitis, fatigue and cough and reduction of lung function (Figure 4). Other health conditions that have been studies can be grouped in broad outcome categories such as: allergies, upper respiratory, psychological, cardiovascular, neurological and gastrointestinal and infectious. Since 2011 other categories that also have been analyzed include: sleep disorders, osteoarticular, autoimmune,   dermatological, blood disorder and metabolic disorders (For more detail about conditions and symptoms presented in each category from 2014 to 2019 see table 2). This multiplicity in outcomes coincides with the changes that have occurred over the years regarding the focus on particular health outcomes. For example, a few years ago, most research focused on the effects produced in the respiratory system but recently researches have investigated the role played by proximity to facilities with the antimicrobial resistance (AMR).
+
+From 2014 to date, 1637 different outcome / exposure combinations were identified in 20 relevant publications. Although there are multiple ways to establish and measure exposition to animal feeding operations, these can be grouped in broader categories which include: emissions, animal and farm density, distance to the nearest CAFO, odors and type of CAFO (swine, poultry, cattle etc.)(Figure 5). For the emission category the measure included dust emissions, ammonia (NH3) and particulate matter (PM10).
+
+To sum up, it is possible to appreciate a growth in the number of studies published during the last seven years as well as a growing trend to explore more health outcomes in these studies. 
+
+```{r echo = FALSE, message=FALSE}
+library(dplyr)
+
+bar <- updated1 %>% group_by(`Broad.category.Body.system`)%>%summarise(Frecuency =length(`Broad.category.Body.system`))
+
+bar2 <- updated1 %>% group_by(`Broad.Cat.Expos`, Year)%>%summarise(Frecuency =length(`Broad.Cat.Expos`))
+
+bar %>% ggplot(aes(x=reorder(`Broad.category.Body.system`,-Frecuency),y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+ xlab("Broad Outcome Category")+ylab("Number of times the broad category was used")+coord_flip()+labs(caption=" Figure 4")
+
+bar2 %>% ggplot(aes(x=reorder(`Broad.Cat.Expos`,-Frecuency),y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+xlab("Broad exposure Category")+ylab("Number of times the broad category was used")+coord_flip()+labs(caption=" Figure 5")
+
+
+
+```
+
+##  Material and methods
+
+###  Study designs eligible
+
+Eligible studies for this update were all types of observational studies reporting any health outcome or measures of the resistance of resident (colonized) bacterial populations measured directly on human subjects. Eligible studies must include more than one unit of measurement of exposure (e.g., more than one farm per exposure group) to be included because of concerns about confounding. Additionally, studies where the unit of measurement of the outcome was a population aggregate were excluded.
+The populations of interest were humans living in communities near and not near animal-feeding operations that might reasonably be described as industrial. This criterion excludes studies that assess the impact of occupational exposure to livestock. Production systems that appeared to be grass-based, nomadic, or confined smallholder operations were not relevant to the update. Studies and outcomes that related to environment such as air, water, and soil or built environment were not eligible.  Animal models of human disease were not eligible because it is unclear how an animal model of human disease would accurately reproduce short- and long-term effects of exposure to AFOs.
+
+###  Information sources and search
+
+The MEDLINE®  databases was searched. Eligible studies reported exposure to an AFO and an individual-level human health outcome. Two reviewers performed study selection and data extraction. The syntax used in the latest systematic review was used here limiting the time from 2014 to 2020. The strategy comprised two concepts animal feeding operations and community health. Studies that only reported animal health outcomes were excluded.
+
+###  Study selection
+
+763 studies were obtained and uploaded into online systematic review software (DistillerSR®, Ottawa, ON, Canada). During Level 1 screening, the following question to assess the relevance of citation abstracts and titles was used:
+
+1.	Does the title and/or abstract describe primary research reporting the association between livestock (intensive- not pastoral) and human interactions (direct or indirect) and measures of human health measured on humans?
+
+Citations were excluded if the reviewer answered “no” to this question. 50 studies passed Level 1 and progressed to Level 2. The following questions to assess each article retained after the full-text evaluation were used:
+
+1.	Does the study use a unit of analysis at the individual human level in the community (but not occupational, such as farm worker)?
+
+2.	Does the study include more than one unit of measurement of exposure?
+
+The study was excluded if the reviewer answered “no” to either question. If the reviewer answered “yes” to both questions, the study progressed to the data extraction. Finally, 20 studies passed Level 2 and passed to the extraction of information.
+
+###  Data collection process
+
+For each of the 21 studies, the reviewer extracted the study year, the study population’s location (country), the reported health outcome measures as well as the measure used to assess the exposure to animal feeding operations. Subsequently, these outcomes and exposures were categorized into broad categories in order to summarize and get some descriptive information.
+
+
+---
+nocite: | 
+   @van2020acute, @baliatsas2019patients, @schultz2019residential, @kalkowska2018associations, @van2018healthcare, @poulsen2018residential, @van2017health, @rasmussen2017proximity, @zomer2017prevalence, @baliatsas2017comorbidity, @freidl2017livestock, @van2016risk, @hooiveld2016doctor, @kock2016persistence, @borlee2015increased, @loftus2015ambient, @hooiveld2015odour, @schinasi2014case, @smit2014air, @levallois2014risk 
+...
+
+```{r echo = FALSE}
+library(dplyr)
+library(knitr)
+#frequency grouped by outcomes and year ###Table 2
+outcomes <- updated1 %>% group_by(Broad.category.Body.system, Outcome.variable, Citation)%>%summarise()
+
+exposure <- updated1 %>% group_by(Broad.Cat.Expos, Community.health.animal.exposure.measure, Citation)%>%summarise()
+
+t2 <- table(updated1$Broad.category.Body.system, updated1$Year)
+
+colnames(outcomes)[1] <- "Broad Category"
+colnames(outcomes)[2] <- "Outcome variable"
+colnames(outcomes)[3] <- "Reference"
+
+colnames(exposure)[1] <- "Broad Category"
+colnames(exposure)[2] <- "Outcome variable"
+colnames(exposure)[3] <- "Reference"
+
+##kable(experiment, caption = "Number of times #broad") alternative #table
+kable(t2, caption = "Number of times broad category was combinated by years ")
+kable(outcomes, caption = "Health outcomes grouped into broad categories")
+
+kable(exposure, caption = "Exposures grouped into broad categories")
+
+
+
+```
+
+## References
+
+<div id="refs"></div>
+
