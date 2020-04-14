@@ -7,7 +7,9 @@ csl: elsevier-vancouver.csl
 output:
   pdf_document: default
   html_document: default
-     
+header-includes:
+ \usepackage{float}
+ \floatplacement{figure}{H}
 ---
 
 ```{r setup, include=FALSE}
@@ -35,7 +37,7 @@ final_papers <- read_excel("final_papers.xlsx")
 updated1 <- data.frame(cafos2014_2020)
 countr <- data.frame(final_papers)
 ```
-```{r figur1,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figur1}Trendline for the number of studies published since 2014"}
+```{r figur1,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figur1}Trendline for the number of studies published since 2014", out.width = '75%', fig.align = "center"}
 
 library(dplyr)
 library(ggplot2)
@@ -58,7 +60,7 @@ years %>%
 ggplot(aes(x=as.factor(Year), y=Frecuency, group=1))+geom_line()+geom_point(shape=21, color="black", fill="#69b3a2", size=6)+ylim(0,8)+ xlab("Year of data collection")+ylab("Number of published studies")
 ```
 
-```{r figura2,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura2}Number of studies published by country since 2014"}
+```{r figura2,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura2}Number of studies published by country since 2014", out.width = '75%', fig.align = "center"}
 
 #table # studies by country
 countries <- countr %>% group_by(`Country`)%>%summarise(Frecuency =length(`Country`))
@@ -67,7 +69,7 @@ countries <- countr %>% group_by(`Country`)%>%summarise(Frecuency =length(`Count
 countries %>% ggplot(aes(x=reorder(`Country`,Frecuency),y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+ xlab("Country")+ylab("Total Number of studies")
 ```
 
-```{r figura3,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura3}Number of broad outcomes categories analyzed since 2014"}
+```{r figura3,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura3}Number of broad outcomes categories analyzed since 2014", out.width = '75%', fig.align = "center"}
 #figure 3
 
 # experiment1%>% ggplot(aes(x=Year, y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+ xlab("Year")+ylab("Number of categories")+labs(caption=" Figure 3")
@@ -90,12 +92,10 @@ bar %>% ggplot(aes(x=reorder(`Broad.category.Body.system`,-Frecuency),y=Frecuenc
 
 From 2014 to date, 1637 different outcome / exposure combinations were identified in 21 relevant publications. Although there are multiple ways to establish and measure exposition to animal feeding operations, these can be grouped in broader categories which include: emissions, animal and farm density, distance to the nearest CAFO, odors and type of CAFO (swine, poultry, cattle etc.)(Figure \ref{fig:figura5}). For the emission category the measure included dust emissions, ammonia (NH3) and particulate matter (PM10). To sum up, it is possible to appreciate a growth in the number of studies published during the last seven years as well as a growing trend to explore more health outcomes in these studies. 
 
-```{r figura5,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura5}Number of times the broad exposure category was used in the studies published since 2014"}
+```{r figura5,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura5}Number of times the broad exposure category was used in the studies published since 2014", out.width = '95%', fig.align = "center"}
 
 bar2 %>% ggplot(aes(x=reorder(`Broad.Cat.Expos`,-Frecuency),y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+xlab("Broad Exposure Category")+ylab("Number of times the broad category was used")+coord_flip()
 ```
-
-
 
 ##  Material and methods
 
