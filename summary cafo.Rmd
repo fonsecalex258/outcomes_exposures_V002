@@ -16,46 +16,41 @@ header-includes:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Project Summary : Outcomes and exposures evaulated in the published literture from 2014 to 2020. updated Annette. BAFM.123
-Livestock farming has experienced a significant transformation in the last decades, moving from small, family-owned farms to large farms. To classify those large animal operations, two terms are used: animal feeding operations (AFO) and concentrated animal feeding operations (CAFO). The U.S. Environmental Protection Agency (EPA) defines an AFO as a agricultural enterprise where animals are kept and raised in confined situations. AFOs congregate animals, feed, manure and urine, dead animals, and production operations on a small land area. Likewise, for the EPA, CAFO is a term used for a large concentrated AFO. More precisely, a CAFO is an AFO with more than 1000 animal units confined on site for more than 45 days during the year. The growth and popularity of this type of operations has been accompanied by the concerns due to the potential harmful effects that animal facilities could have on nearby communities. Regarding the swine industry, it has been suggested that facilities that confine animals indoors for feeding might represent a health hazard for surrounding communities because of exposure to odors, emissions and other infectious agents. To understand and estimate the impacts of CAFO on the health of nearby communities, several studies have been carried out in the last years.
+# Project Summary : Outcomes and exposures evaulated in the published literture from 2014 to 2020.
+Livestock farming has experienced a significant transformation in the 60 years, moving from small, family-owned farms to large farms. Two terms are used to classify those large animal operations: animal feeding operations (AFO) and concentrated animal feeding operations (CAFO). The U.S. Environmental Protection Agency (EPA) defines an AFO as an agricultural enterprise where animals are kept and raised in confined situations. AFOs congregate animals, feed, manure and urine, dead animals, and production operations on a small land area. Likewise, for the EPA, CAFO is a term used for a large concentrated AFO. More precisely, a CAFO is an AFO with more than 1000 animal units confined on site for more than 45 days during the year. The growth and popularity of this type of operations have been accompanied by concerns about potential harmful effects that animal facilities could have on nearby communities. It has been suggested that facilities that confine animals indoors for feeding might represent a health hazard for surrounding communities because of exposure to odors, emissions and other infectious agents. To understand and estimate the impacts of CAFO on the health of nearby communities, several studies have been carried out over the past 30 years.
 
 # Purpose of the Project
-In March 2020, the National Pork Board asked our group to provide a summary of the outcome and exposures reported in studies published on the topic of CAFOS and community health since 2014.  Our group has performed two systematic reviews that summarize and assess the findings of previous publications approaching the association between animal-feeding operations and the measures of the health of individuals living near animal-feeding operations. In the 2014 review, we reported that 16 publications were relevant to the topic. For this project, we evaluated potentially relevant papers published since 2014.
+In March 2020, the National Pork Board asked our group to provide a summary of the outcome and exposures reported in studies published on the topic of CAFOS and community health since 2014.  Our group has performed two systematic reviews that summarize and assess the findings of previous publications approaching the association between animal-feeding operations and the measures of the health of individuals living near animal-feeding operations. In the 2014 review, we reported that 16 publications were relevant to the topic. For this project, we evaluated the outcomes and exposure reported in potentially relevant papers published since 2014.
 
 # Brief Summary
-We identified 21 additional papers published since 2014. In  2017 was the year in which more studies were published (Figure \ref{fig:figur1}). This growth in relevant papers highlights how much interest in the topic is growing. These "new" studies have been performed mainly in Netherlands, USA, Germany, and Canada and have explored multiple health outcomes (Figure \ref{fig:figura2}). For each study, the reported health outcome measures as well as the measure used to assess exposure to animal feed operations were extracted and grouped into broad outcome and exposure categories respectively. For example if a studie reported asthma as a health outcome, this outcome was categorized into the broader category of lower respiratory diseases.These broad outcomes categories were created based on the affected body system such as digestive, cardiovascular, etc (Table 2). Likewise, if for example the exposure used into the study was distance measured in kilometers to the nearest animal operation, then this exposure was grouped into a  broader exposure category called distance (Table 3).We defined a combination as the pair of a broad outcome category and an exposure, for example, lower respiratory disease (broad outcome category) and distance to the nearest CAFO operation (exposure). In Table 1,  the number of combinations in which the broad outcome category was used according to the year. For instance, we can see that for lower respiratory outcomes were the most used and discussed over the last 6 years (Table 1).The studies provided 1636 combinations of exposures and outcomes. For the period between 2014 and 2016 the number of outcomes categories analyzed ranged from 4 to 6. For the period between 2017 and 2019 the number of categories almost doubled (Figure \ref{fig:figura3}).   
-
-```{r echo = FALSE, message=FALSE}
-
-library(readxl)
+We identified 21 additional papers published since 2014. In  2017 was the year in which more studies were published (Figure \ref{fig:figur1}). This growth in relevant papers highlights how much interest in the topic is growing. These 21 studies have been performed in the Netherlands, USA, Germany, and Canada and explored numerous health outcomes (Figure \ref{fig:figura2}).  The studies provided 1636 combinations of exposures and outcomes.
 
 
-cafos2014_2020 <- read_excel("cafos2014_2020.xlsx")
+To summarize these combinations, the reported health outcome measures and measures used to assess exposure to animal feed operations were further grouped into broad outcome and exposure categories, respectively. For example, if a study reported asthma as a health outcome, this outcome was categorized into the more general group of lower respiratory diseases. These broad outcomes categories were created based on the affected body system such as digestive, cardiovascular, etc (Table 2). A similar approach was used for exposure metrics (Table 3). We defined a combination as the pair of a broad outcome category and exposure, for example, lower respiratory disease (broad outcome category) and distance to the nearest CAFO operation (exposure). The rationale for this approach was to manage the data presentation as each author group used slightly different definitions of outcome and exposure.
 
-final_papers <- read_excel("final_papers.xlsx")
+# Basic Description of the Studies
+The studies provided 1636 combinations of exposures and outcomes. the number of studies reported each year roughly three, with an increase in 2017, probably associated with the spike in studies associated with the Q fever outbreak in the the Netherlands (Figure \ref{fig:figur1}). The Netherland also produced the most studies, again likely due to interest in the topic, due to the Q fever outbreak (Figure \ref{fig:figura2})  For the period between 2014 and 2016 the number of outcomes categories analyzed ranged from 4 to 6. For the period between 2017 and 2019 the number of categories almost doubled (Figure \ref{fig:figura3}).
 
-updated1 <- data.frame(cafos2014_2020)
-countr <- data.frame(final_papers)
-```
 ```{r figur1,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figur1}Trendline for the number of studies published since 2014", out.width = '75%', fig.align = "center"}
 
+library(readxl)
 library(dplyr)
 library(ggplot2)
-
-#frequency grouped by outcomes and year ###Table 1
+#importing the data and arranging properly 
+cafos2014_2020 <- read_excel("cafos2014_2020.xlsx")
+final_papers <- read_excel("final_papers.xlsx")
+updated1 <- data.frame(cafos2014_2020)
+countr <- data.frame(final_papers)
+#frequency grouped by outcomes and year
+###Table 1
 experiment <- updated1 %>% group_by(`Year`,Broad.category.Body.system)%>%summarise(Frequency =length(Broad.category.Body.system))
-
-
 colnames(experiment)[2] <- "Broad Category"
-
 #frequency of outcomes by year
 experiment1 <-experiment %>% group_by(`Year`)%>%summarise(Frecuency =length(Year))
-
 #table # studies by year
 years <- countr %>% group_by(`Year`)%>%summarise(Frecuency =length(`Year`))
 
 #Figure 1
-# years %>% ggplot(aes(x=Year,y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+ xlab("Year")+ylab("Number of published studies")+labs(caption=" Figure 1")
 years %>%
 ggplot(aes(x=as.factor(Year), y=Frecuency, group=1))+geom_line()+geom_point(shape=21, color="black", fill="#69b3a2", size=6)+ylim(0,8)+ xlab("Year of data collection")+ylab("Number of published studies")
 ```
@@ -78,7 +73,9 @@ experiment1%>% ggplot(aes(x=as.factor(Year), y=Frecuency, group=1))+geom_line()+
 
 ```
 
-From 2014 to 2019, the health outcomes most commonly described are grouped within the broad group of lower respiratory conditions and include symptoms and diseases such as: asthma, chronic obstructive pulmonary disease (COPD), difficulty breathing, wheezing, emphysema, pneumonia, bronchitis, fatigue and cough and reduction of lung function (Figure \ref{fig:figura4}). Other health conditions that have been studies can be grouped in broad outcome categories such as: allergies, upper respiratory, psychological, cardiovascular, neurological and gastrointestinal and infectious. Since 2011 other categories that also have been analyzed include: sleep disorders, osteoarticular, autoimmune,   dermatological, blood disorder and metabolic disorders (For more detail about conditions and symptoms presented in each category from 2014 to 2019 see Table 2). This multiplicity in outcomes coincides with the changes that have occurred over the years regarding the focus on particular health outcomes. For example, a few years ago, most research focused on the effects produced in the respiratory system but recently researches have investigated the role played by proximity to facilities with the antimicrobial resistance (AMR).
+
+# Health outcomes of the studies
+From 2014 to 2019, the health outcomes most commonly described were included within the broad group of lower respiratory conditions. The specific outcomes included in this category include symptoms and diseases such as asthma, chronic obstructive pulmonary disease (COPD), difficulty breathing, wheezing, emphysema, pneumonia, bronchitis, fatigue and cough, and reduction of lung function (Figure \ref{fig:figura4}). Other common health conditions in the top five most frequently include psychological disorders, gastrointestinal disease, allergies, and cardiovascular, neurological. Since 2014, less common health outcomes reported include sleep disorders, osteoarticular, autoimmune,   dermatological, blood disorder, and metabolic disorders. For more detail about conditions and symptoms presented in each category from 2014 to 2019 (see Table 2). A few years ago in our prior reviews, most research focused on the effects produced in the respiratory system. Still, recently, researchers have investigated the role played by proximity to facilities with the antimicrobial resistance (AMR) and physiological diseases. 
 
 ```{r figura4,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura4}Number of times the broad outcome category was used in the studies published since 2014"}
 library(dplyr)
@@ -90,7 +87,9 @@ bar2 <- updated1 %>% group_by(`Broad.Cat.Expos`, Year)%>%summarise(Frecuency =le
 bar %>% ggplot(aes(x=reorder(`Broad.category.Body.system`,-Frecuency),y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+ xlab("Broad Outcome Category")+ylab("Number of times the broad category was used")+coord_flip()
 ```
 
-From 2014 to date, 1637 different outcome / exposure combinations were identified in 21 relevant publications. Although there are multiple ways to establish and measure exposition to animal feeding operations, these can be grouped in broader categories which include: emissions, animal and farm density, distance to the nearest CAFO, odors and type of CAFO (swine, poultry, cattle etc.)(Figure \ref{fig:figura5}). For the emission category the measure included dust emissions, ammonia (NH3) and particulate matter (PM10). To sum up, it is possible to appreciate a growth in the number of studies published during the last seven years as well as a growing trend to explore more health outcomes in these studies. 
+# Exposures defined in the studies
+
+There are multiple ways to establish and measure exposure to animal feeding operations. These can be grouped in broader categories which include: emissions, animal and farm density, distance to the nearest CAFO, odors and type of CAFO (swine, poultry, cattle etc.)(Figure \ref{fig:figura5}). For the emission category the measure included dust emissions, ammonia (NH3) and particulate matter (PM10). The most common exposure is distance, which is a cheap readily avilable, and imperfect metric for exposure.  
 
 ```{r figura5,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura5}Number of times the broad exposure category was used in the studies published since 2014", out.width = '95%', fig.align = "center"}
 
