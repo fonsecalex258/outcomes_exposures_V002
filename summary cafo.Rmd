@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Project Summary : Outcomes and exposures evaulated in the published literture from 2014 to 2020. updated Annette 
+# Project Summary : Outcomes and exposures evaulated in the published literture from 2014 to 2020. updated Annette. BAFM
 Livestock farming has experienced a significant transformation in the last decades, moving from small, family-owned farms to large farms. To classify those large animal operations, two terms are used: animal feeding operations (AFO) and concentrated animal feeding operations (CAFO). The U.S. Environmental Protection Agency (EPA) defines an AFO as a agricultural enterprise where animals are kept and raised in confined situations. AFOs congregate animals, feed, manure and urine, dead animals, and production operations on a small land area. Likewise, for the EPA, CAFO is a term used for a large concentrated AFO. More precisely, a CAFO is an AFO with more than 1000 animal units confined on site for more than 45 days during the year. The growth and popularity of this type of operations has been accompanied by the concerns due to the potential harmful effects that animal facilities could have on nearby communities. Regarding the swine industry, it has been suggested that facilities that confine animals indoors for feeding might represent a health hazard for surrounding communities because of exposure to odors, emissions and other infectious agents. To understand and estimate the impacts of CAFO on the health of nearby communities, several studies have been carried out in the last years.
 
 # Purpose of the Project
