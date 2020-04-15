@@ -5,8 +5,8 @@ title: Human health effects due to proximity to concentrated animal-feeding oper
 bibliography: referencescafo.bib 
 csl: elsevier-vancouver.csl
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 header-includes:
  \usepackage{float}
  \floatplacement{figure}{H}
@@ -32,7 +32,6 @@ To summarize these combinations, the reported health outcome measures and measur
 The studies provided 1636 combinations of exposures and outcomes. the number of studies reported each year roughly three, with an increase in 2017, probably associated with the spike in studies associated with the Q fever outbreak in the the Netherlands (Figure \ref{fig:figur1}). The Netherland also produced the most studies, again likely due to interest in the topic, due to the Q fever outbreak (Figure \ref{fig:figura2})  For the period between 2014 and 2016 the number of outcomes categories analyzed ranged from 4 to 6. For the period between 2017 and 2019 the number of categories almost doubled (Figure \ref{fig:figura3}).
 
 ```{r figur1,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figur1}Trendline for the number of studies published since 2014", out.width = '75%', fig.align = "center"}
-
 library(readxl)
 library(dplyr)
 library(ggplot2)
@@ -49,50 +48,50 @@ colnames(experiment)[2] <- "Broad Category"
 experiment1 <-experiment %>% group_by(`Year`)%>%summarise(Frecuency =length(Year))
 #table # studies by year
 years <- countr %>% group_by(`Year`)%>%summarise(Frecuency =length(`Year`))
-
 #Figure 1
 years %>%
 ggplot(aes(x=as.factor(Year), y=Frecuency, group=1))+geom_line()+geom_point(shape=21, color="black", fill="#69b3a2", size=6)+ylim(0,8)+ xlab("Year of data collection")+ylab("Number of published studies")
 ```
 
 ```{r figura2,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura2}Number of studies published by country since 2014", out.width = '75%', fig.align = "center"}
-
 #table # studies by country
 countries <- countr %>% group_by(`Country`)%>%summarise(Frecuency =length(`Country`))
-
-
 countries %>% ggplot(aes(x=reorder(`Country`,Frecuency),y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+ xlab("Country")+ylab("Total Number of studies")
 ```
 
 ```{r figura3,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura3}Number of broad outcomes categories analyzed since 2014", out.width = '75%', fig.align = "center"}
 #figure 3
-
 # experiment1%>% ggplot(aes(x=Year, y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+ xlab("Year")+ylab("Number of categories")+labs(caption=" Figure 3")
-
 experiment1%>% ggplot(aes(x=as.factor(Year), y=Frecuency, group=1))+geom_line()+geom_point(shape=21, color="black", fill="#69b3a2", size=6)+ylim(0,15)+ xlab("Year")+ylab("Number of broad categories analyzed")
+```
 
+# Species considered in the studies
+
+The domestic species studied in the 21 references were cattle, swine, poultry, sheep, goat, mink and horse.These species were analyzed as an exposure and were evaluated in variables such as the type of animal species on the farm, distance from human residence to the farm with any of the mentioned species and density of animals. The swine was the most common specie with a total of 19 studies and was followed by cattle and poultry with 17 (Figure \ref{fig:figura4}). When the country is taken into consideration, it is possible to appreciate that in the United States only studies analyzing cattle, poultry and pigs were published, while in the Netherlands the studies included all the species. To be more exact, in the United States three studies were published considering swine and cattle and two considering poultry (Table 4).
+
+```{r figura4,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura4}Number of studies published by species in the twenty one references included", out.width = '75%', fig.align = "center"}
+
+species <- countr %>% group_by(`Species`)%>%summarise(Frecuency =length(`Species`))
+
+species %>% ggplot(aes(x=reorder(`Species`,Frecuency),y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+ xlab("Specie")+ylab("Number of studies")
 ```
 
 
 # Health outcomes of the studies
-From 2014 to 2019, the health outcomes most commonly described were included within the broad group of lower respiratory conditions. The specific outcomes included in this category include symptoms and diseases such as asthma, chronic obstructive pulmonary disease (COPD), difficulty breathing, wheezing, emphysema, pneumonia, bronchitis, fatigue and cough, and reduction of lung function (Figure \ref{fig:figura4}). Other common health conditions in the top five most frequently include psychological disorders, gastrointestinal disease, allergies, and cardiovascular, neurological. Since 2014, less common health outcomes reported include sleep disorders, osteoarticular, autoimmune,   dermatological, blood disorder, and metabolic disorders. For more detail about conditions and symptoms presented in each category from 2014 to 2019 (see Table 2). A few years ago in our prior reviews, most research focused on the effects produced in the respiratory system. Still, recently, researchers have investigated the role played by proximity to facilities with the antimicrobial resistance (AMR) and physiological diseases. 
+From 2014 to 2019, the health outcomes most commonly described were included within the broad group of lower respiratory conditions. The specific outcomes included in this category include symptoms and diseases such as asthma, chronic obstructive pulmonary disease (COPD), difficulty breathing, wheezing, emphysema, pneumonia, bronchitis, fatigue and cough, and reduction of lung function (Figure \ref{fig:figura5}). Other common health conditions in the top five most frequently include psychological disorders, gastrointestinal disease, allergies, and cardiovascular, neurological. Since 2014, less common health outcomes reported include sleep disorders, osteoarticular, autoimmune,   dermatological, blood disorder, and metabolic disorders. For more detail about conditions and symptoms presented in each category from 2014 to 2019 (see Table 2). A few years ago in our prior reviews, most research focused on the effects produced in the respiratory system. Still, recently, researchers have investigated the role played by proximity to facilities with the antimicrobial resistance (AMR) and physiological diseases. 
 
-```{r figura4,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura4}Number of times the broad outcome category was used in the studies published since 2014"}
+```{r figura5,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura5}Number of times the broad outcome category was used in the studies published since 2014"}
 library(dplyr)
-
 bar <- updated1 %>% group_by(`Broad.category.Body.system`)%>%summarise(Frecuency =length(`Broad.category.Body.system`))
-
 bar2 <- updated1 %>% group_by(`Broad.Cat.Expos`, Year)%>%summarise(Frecuency =length(`Broad.Cat.Expos`))
-
 bar %>% ggplot(aes(x=reorder(`Broad.category.Body.system`,-Frecuency),y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+ xlab("Broad Outcome Category")+ylab("Number of times the broad category was used")+coord_flip()
 ```
 
 # Exposures defined in the studies
 
-There are multiple ways to establish and measure exposure to animal feeding operations. These can be grouped in broader categories which include: emissions, animal and farm density, distance to the nearest CAFO, odors and type of CAFO (swine, poultry, cattle etc.)(Figure \ref{fig:figura5}). For the emission category the measure included dust emissions, ammonia (NH3) and particulate matter (PM10). The most common exposure is distance, which is a cheap readily avilable, and imperfect metric for exposure.  
+There are multiple ways to establish and measure exposure to animal feeding operations. These can be grouped in broader categories which include: emissions, animal and farm density, distance to the nearest CAFO, odors and type of CAFO (swine, poultry, cattle etc.)(Figure \ref{fig:figura6}). For the emission category the measure included dust emissions, ammonia (NH3) and particulate matter (PM10). The most common exposure is distance, which is a cheap readily avilable, and imperfect metric for exposure.  
 
-```{r figura5,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura5}Number of times the broad exposure category was used in the studies published since 2014", out.width = '95%', fig.align = "center"}
-
+```{r figura6,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura6}Number of times the broad exposure category was used in the studies published since 2014", out.width = '95%', fig.align = "center"}
 bar2 %>% ggplot(aes(x=reorder(`Broad.Cat.Expos`,-Frecuency),y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+xlab("Broad Exposure Category")+ylab("Number of times the broad category was used")+coord_flip()
 ```
 
@@ -136,26 +135,21 @@ library(dplyr)
 library(knitr)
 #frequency grouped by outcomes and year ###Table 2
 outcomes <- updated1 %>% group_by(Broad.category.Body.system, Outcome.variable, Citation)%>%summarise()
-
 exposure <- updated1 %>% group_by(Broad.Cat.Expos, Community.health.animal.exposure.measure, Citation)%>%summarise()
-
 t2 <- table(updated1$Broad.category.Body.system, updated1$Year)
-
+t3 <- table(countr$Country1,countr$Species)
 colnames(outcomes)[1] <- "Broad Category"
 colnames(outcomes)[2] <- "Outcome variable"
 colnames(outcomes)[3] <- "Reference"
-
 colnames(exposure)[1] <- "Broad Category"
 colnames(exposure)[2] <- "Outcome variable"
 colnames(exposure)[3] <- "Reference"
-
 ##kable(experiment, caption = "Number of times #broad") alternative #table
 kable(t2, caption = "Number of times broad category was combinated by years ")
 kable(outcomes, caption = "Health outcomes grouped into broad categories")
-
 kable(exposure, caption = "Exposures grouped into broad categories") 
 
-
+kable(t3, caption = "Number of studies published according to the country and the species studied") 
 
 ```
 
