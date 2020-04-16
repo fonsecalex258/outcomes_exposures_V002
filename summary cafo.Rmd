@@ -1,12 +1,12 @@
 ---
-title: Human health effects due to proximity to concentrated animal-feeding operations
+title: Outcomes and exposure metrics reported in studies evaulating proximity to  Human health effectsconcentrated animal-feeding operations
   (CAFO)
   
 bibliography: referencescafo.bib 
 csl: elsevier-vancouver.csl
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 header-includes:
  \usepackage{float}
  \floatplacement{figure}{H}
@@ -23,13 +23,12 @@ Livestock farming has experienced a significant transformation in the 60 years, 
 In March 2020, the National Pork Board asked our group to provide a summary of the outcome and exposures reported in studies published on the topic of CAFOS and community health since 2014.  Our group has performed two systematic reviews that summarize and assess the findings of previous publications approaching the association between animal-feeding operations and the measures of the health of individuals living near animal-feeding operations. In the 2014 review, we reported that 16 publications were relevant to the topic. For this project, we evaluated the outcomes and exposure reported in potentially relevant papers published since 2014.
 
 # Brief Summary
-We identified 21 additional papers published since 2014. In  2017 was the year in which more studies were published (Figure \ref{fig:figur1}). This growth in relevant papers highlights how much interest in the topic is growing. These 21 studies have been performed in the Netherlands, USA, Germany, and Canada and explored numerous health outcomes (Figure \ref{fig:figura2}).  The studies provided 1636 combinations of exposures and outcomes.
+We identified 21 additional papers published since 2014 (Figure \ref{fig:figur1}). The growth in relevant papers highlights how much interest in the topic is growing. These 21 studies have been performed in the Netherlands, USA, Germany, and Canada and explored numerous health outcomes (Figure \ref{fig:figura2}). The studies provided 1636 combinations of exposures and outcomes.
 
-
-To summarize these combinations, the reported health outcome measures and measures used to assess exposure to animal feed operations were further grouped into broad outcome and exposure categories, respectively. For example, if a study reported asthma as a health outcome, this outcome was categorized into the more general group of lower respiratory diseases. These broad outcomes categories were created based on the affected body system such as digestive, cardiovascular, etc (Table 2). A similar approach was used for exposure metrics (Table 3). We defined a combination as the pair of a broad outcome category and exposure, for example, lower respiratory disease (broad outcome category) and distance to the nearest CAFO operation (exposure). The rationale for this approach was to manage the data presentation as each author group used slightly different definitions of outcome and exposure.
+To summarize these combinations, the reported health outcome measures and measures used to assess exposure to animal feed operations were further grouped into broad outcome and exposure categories, respectively. For example, if a study reported asthma as a health outcome, this outcome was categorized into the more general group of lower respiratory diseases. These broad outcomes categories were created based on the affected body system (Table 2). A similar approach was used for exposure metrics (Table 3). We defined a combination as the pair of a broad outcome category and exposure, for example, lower respiratory disease (broad outcome category) and distance to the nearest CAFO operation (exposure). The rationale for this approach was to manage the data presentation as each author group used slightly different definitions of outcome and exposure.
 
 # Basic Description of the Studies
-The studies provided 1636 combinations of exposures and outcomes. the number of studies reported each year roughly three, with an increase in 2017, probably associated with the spike in studies associated with the Q fever outbreak in the the Netherlands (Figure \ref{fig:figur1}). The Netherland also produced the most studies, again likely due to interest in the topic, due to the Q fever outbreak (Figure \ref{fig:figura2})  For the period between 2014 and 2016 the number of outcomes categories analyzed ranged from 4 to 6. For the period between 2017 and 2019 the number of categories almost doubled (Figure \ref{fig:figura3}).
+The studies provided 1636 combinations of exposures and outcomes. The number of studies reported each year since 2014 is usually three, with an increase in 2017, probably associated with the spike in studies related to the Q fever outbreak in the Netherlands (Figure \ref{fig:figur1}). The Netherland also produced the most studies, again likely due to interest in the topic, due to the Q fever outbreak (Figure \ref{fig:figura2}). For the period between 2014 and 2016, the number of outcomes categories analyzed ranged from 4 to 6. For the period between 2017 and 2019 the number of categories almost doubled (Figure \ref{fig:figura3}).
 
 ```{r figur1,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figur1}Trendline for the number of studies published since 2014", out.width = '75%', fig.align = "center"}
 library(readxl)
@@ -55,8 +54,8 @@ ggplot(aes(x=as.factor(Year), y=Frecuency, group=1))+geom_line()+geom_point(shap
 
 ```{r figura2,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura2}Number of studies published by country since 2014", out.width = '75%', fig.align = "center"}
 #table # studies by country
-countries <- countr %>% group_by(`Country`)%>%summarise(Frecuency =length(`Country`))
-countries %>% ggplot(aes(x=reorder(`Country`,Frecuency),y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+ xlab("Country")+ylab("Total Number of studies")
+countries <- countr %>% na.omit() %>% group_by(`Country`)%>%summarise(Frecuency =length(`Country`))
+countries %>% ggplot(aes(x=reorder(`Country`,Frecuency),y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+ xlab("Country")+ylab("Total number of studies")
 ```
 
 ```{r figura3,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura3}Number of broad outcomes categories analyzed since 2014", out.width = '75%', fig.align = "center"}
@@ -67,7 +66,7 @@ experiment1%>% ggplot(aes(x=as.factor(Year), y=Frecuency, group=1))+geom_line()+
 
 # Species considered in the studies
 
-The domestic species studied in the 21 references were cattle, swine, poultry, sheep, goat, mink and horse.These species were analyzed as an exposure and were evaluated in variables such as the type of animal species on the farm, distance from human residence to the farm with any of the mentioned species and density of animals. The swine was the most common specie with a total of 19 studies and was followed by cattle and poultry with 17 (Figure \ref{fig:figura4}). When the country is taken into consideration, it is possible to appreciate that in the United States only studies analyzing cattle, poultry and pigs were published, while in the Netherlands the studies included all the species. To be more exact, in the United States three studies were published considering swine and cattle and two considering poultry (Table 4).
+The domestic species studied in the 21 references were cattle, swine, poultry, sheep, goat, mink, and horse. These species were analyzed as an exposure and were evaluated in variables such as the type of animal species on the farm, distance from human residence to the farm with any of the mentioned species and density of animals. The swine was the most common species with a total of 19 studies. Cattle and poultry were evaluated in 17 studies (Figure \ref{fig:figura4}). When the country is taken into consideration, it is possible to appreciate that in the United States only studies analyzing cattle, poultry, and pigs were published, while in the Netherlands the studies included all the species. In the United States, three studies were published considering swine and cattle and two considering poultry (Table 4).
 
 ```{r figura4,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura4}Number of studies published by species in the twenty one references included", out.width = '75%', fig.align = "center"}
 
@@ -78,7 +77,7 @@ species %>% ggplot(aes(x=reorder(`Species`,Frecuency),y=Frecuency))+geom_bar(sta
 
 
 # Health outcomes of the studies
-From 2014 to 2019, the health outcomes most commonly described were included within the broad group of lower respiratory conditions. The specific outcomes included in this category include symptoms and diseases such as asthma, chronic obstructive pulmonary disease (COPD), difficulty breathing, wheezing, emphysema, pneumonia, bronchitis, fatigue and cough, and reduction of lung function (Figure \ref{fig:figura5}). Other common health conditions in the top five most frequently include psychological disorders, gastrointestinal disease, allergies, and cardiovascular, neurological. Since 2014, less common health outcomes reported include sleep disorders, osteoarticular, autoimmune,   dermatological, blood disorder, and metabolic disorders. For more detail about conditions and symptoms presented in each category from 2014 to 2019 (see Table 2). A few years ago in our prior reviews, most research focused on the effects produced in the respiratory system. Still, recently, researchers have investigated the role played by proximity to facilities with the antimicrobial resistance (AMR) and physiological diseases. 
+From 2014 to 2019, the health outcomes most commonly described were included within the broad group of lower respiratory conditions. The specific outcomes included in this category include symptoms and diseases such as asthma, chronic obstructive pulmonary disease (COPD), difficulty breathing, wheezing, emphysema, pneumonia, bronchitis, fatigue and cough, and reduction of lung function (Figure \ref{fig:figura5}). Other common health conditions in the top five most frequently include psychological disorders, gastrointestinal disease, allergies, and cardiovascular, neurological. Since 2014, less common health outcomes  have been reported including sleep disorders, osteoarticular, autoimmune,   dermatological, blood disorder, and metabolic disorders. For more detail about conditions and symptoms presented in each category from 2014 to 2019 (see Table 2). A few years ago, in our prior reviews, most research focused on the effects produced in the respiratory system. Still, recently, researchers have investigated the role played by proximity to facilities with the antimicrobial resistance (AMR) and physiological diseases. 
 
 ```{r figura5,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura5}Number of times the broad outcome category was used in the studies published since 2014"}
 library(dplyr)
@@ -89,7 +88,7 @@ bar %>% ggplot(aes(x=reorder(`Broad.category.Body.system`,-Frecuency),y=Frecuenc
 
 # Exposures defined in the studies
 
-There are multiple ways to establish and measure exposure to animal feeding operations. These can be grouped in broader categories which include: emissions, animal and farm density, distance to the nearest CAFO, odors and type of CAFO (swine, poultry, cattle etc.)(Figure \ref{fig:figura6}). For the emission category the measure included dust emissions, ammonia (NH3) and particulate matter (PM10). The most common exposure is distance, which is a cheap readily avilable, and imperfect metric for exposure.  
+There are multiple ways to establish and measure exposure to animal feeding operations. These can be grouped in broader categories which include: emissions, animal and farm density, distance to the nearest CAFO, odors, and type of CAFO (swine, poultry, cattle, etc.)(Figure \ref{fig:figura6}). For the emission category, the measures included dust emissions, ammonia (NH3) and particulate matter (PM10). The most common exposure is the distance, which is a cheap, readily available, and imperfect metric for exposure.  
 
 ```{r figura6,echo = FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:figura6}Number of times the broad exposure category was used in the studies published since 2014", out.width = '95%', fig.align = "center"}
 bar2 %>% ggplot(aes(x=reorder(`Broad.Cat.Expos`,-Frecuency),y=Frecuency))+geom_bar(stat="identity", fill="steelblue")+xlab("Broad Exposure Category")+ylab("Number of times the broad category was used")+coord_flip()
@@ -99,12 +98,12 @@ bar2 %>% ggplot(aes(x=reorder(`Broad.Cat.Expos`,-Frecuency),y=Frecuency))+geom_b
 
 ###  Study designs eligible
 
-Eligible studies for this update were all types of observational studies reporting any health outcome or measures of the resistance of resident (colonized) bacterial populations measured directly on human subjects. Eligible studies must include more than one unit of measurement of exposure (e.g., more than one farm per exposure group) to be included because of concerns about confounding. Additionally, studies where the unit of measurement of the outcome was a population aggregate were excluded.
+Eligible studies for this update were any observational studies reporting any health outcome or measures of the resistance of resident (colonized) bacterial populations measured directly on human subjects. Eligible studies must include more than one unit of measurement of exposure (e.g., more than one farm per exposure group) to be included because of concerns about confounding. Additionally, studies where the unit of measurement of the outcome was a population aggregate were excluded.
 The populations of interest were humans living in communities near and not near animal-feeding operations that might reasonably be described as industrial. This criterion excludes studies that assess the impact of occupational exposure to livestock. Production systems that appeared to be grass-based, nomadic, or confined smallholder operations were not relevant to the update. Studies and outcomes that related to environment such as air, water, and soil or built environment were not eligible.  Animal models of human disease were not eligible because it is unclear how an animal model of human disease would accurately reproduce short- and long-term effects of exposure to AFOs.
 
 ###  Information sources and search
 
-The MEDLINE®  databases was searched. Eligible studies reported exposure to an AFO and an individual-level human health outcome. Two reviewers performed study selection and data extraction. The syntax used in the latest systematic review was used here limiting the time from 2014 to 2020. The strategy comprised two concepts animal feeding operations and community health. Studies that only reported animal health outcomes were excluded.
+The MEDLINE®  databases was searched. Two reviewers performed study selection and data extraction. The syntax used in the latest systematic review was used here limiting the time from 2014 to 2020. The strategy comprised two concepts animal feeding operations and community health. Studies that only reported animal health outcomes were excluded.
 
 ###  Study selection
 
